@@ -18,11 +18,7 @@ struct CircleTimerView: View {
     var timeRemaining: Int {
         maxTime - currentTime
     }
-    
-    var animation: Animation {
-        Animation.linear(duration: 10)
-            .repeatForever(autoreverses: false)
-    }
+
     
     var body: some View {
         ZStack {
