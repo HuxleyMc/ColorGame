@@ -5,6 +5,8 @@
   </a>
 </p>
 
+## Description
+The goal of the game is the click the correct color that match's the middle circle as many times as possible in 60 seconds.
 
 
 
