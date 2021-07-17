@@ -18,7 +18,7 @@ struct CircleTimerView: View {
     var timeRemaining: Int {
         maxTime - currentTime
     }
-        
+    
     var animation: Animation {
         Animation.linear(duration: 10)
             .repeatForever(autoreverses: false)
@@ -27,7 +27,12 @@ struct CircleTimerView: View {
     var body: some View {
         ZStack {
             Circle()
-                .fill(currentColor)
+                .stroke(style: StrokeStyle(lineWidth: 2))
+                .fill(Color.black)
+                .background(
+                    Circle()
+                        .foregroundColor(currentColor)
+                )
                 .frame(width: size, height: size)
                 .foregroundColor(.white)
             VStack {
