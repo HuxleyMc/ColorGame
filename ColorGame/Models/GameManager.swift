@@ -12,7 +12,7 @@ class GameManager: ObservableObject {
     
     @Published var maxTime: Int = 60
     @Published var currentTime: Int = 0
-    @Published var timeRemaining: Int = 0
+    @Published var timeRemaining: Int = 60
     @Published var score: Int = 0
     @Published var scoreColor: Color = Color.black
     @Published var currentStreak: Int = 0
@@ -34,6 +34,7 @@ class GameManager: ObservableObject {
     
     init(maxTime: Int = 60) {
         self.maxTime = maxTime
+        self.timeRemaining = maxTime
     }
     
     var isRunning: Bool {
@@ -41,7 +42,7 @@ class GameManager: ObservableObject {
     }
     
     func startGame() {
-        if gameStarted { return }
+        if gameStarted ||  self.timeRemaining == 0  { return }
         print("Creating new timer")
         self.pickRandomColor()
         self.startTimer()
@@ -71,8 +72,14 @@ class GameManager: ObservableObject {
         if self.timer != nil { return }
         self.isPaused = false
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            self.currentTime += 1
-            self.timeRemaining = self.maxTime - self.currentTime
+            if self.timeRemaining == 0 {
+                self.stopTimer()
+                self.currentColor = nil
+                self.isPaused = true
+            } else {
+                self.currentTime += 1
+                self.timeRemaining = self.maxTime - self.currentTime
+            }
         }
     }
     
