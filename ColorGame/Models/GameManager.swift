@@ -66,7 +66,9 @@ class GameManager: ObservableObject {
     }
     
     func pickRandomColor() {
-        self.currentColor = self.possibleColors.randomElement()
+        var colors: [Color] = self.possibleColors
+        colors.removeAll(where: {$0 == self.currentColor})
+        self.currentColor = colors.randomElement()
     }
     
     
