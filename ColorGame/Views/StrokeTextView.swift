@@ -8,13 +8,28 @@
 import SwiftUI
 
 struct StrokeTextView: View {
+    let text: String
+    let width: CGFloat
+    let color: Color
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack{
+            ZStack{
+                Text(text).offset(x:  width, y:  width)
+                Text(text).offset(x: -width, y: -width)
+                Text(text).offset(x: -width, y:  width)
+                Text(text).offset(x:  width, y: -width)
+            }
+            .foregroundColor(color)
+            Text(text)
+        }
     }
 }
 
+
 struct StrokeTextView_Previews: PreviewProvider {
     static var previews: some View {
-        StrokeTextView()
+        StrokeTextView(text: "10", width: 0.9, color: Color.black)
+            .foregroundColor(.green)
     }
 }
