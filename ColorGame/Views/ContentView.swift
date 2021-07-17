@@ -11,6 +11,8 @@ struct ContentView: View {
     
     @StateObject private var gameState = GameManager()
     
+    @State var isPresented: Bool = false
+    
     var body: some View {
         ZStack {
             ColoredPanelView(pickedColor: gameState.pickedColor)
@@ -24,6 +26,17 @@ struct ContentView: View {
             }
             VStack(alignment: .leading) {
                 HStack {
+                    Button(action: {
+                        if !gameState.isPaused {
+                            gameState.pause()
+                        }
+                        isPresented = true
+                    }) {
+                        Image(systemName: "house.fill")
+                            .foregroundColor(.black)
+                            .font(.title)
+                            .frame(width: 60, height: 60, alignment: .center)
+                    }
                     Spacer()
                     Button(action: {
                         gameState.pause()
@@ -31,13 +44,24 @@ struct ContentView: View {
                         Image(systemName: gameState.isPaused ? "play.fill" : "pause.fill")
                             .foregroundColor(.black)
                             .font(.title)
-                            .frame(width: 50, height: 50, alignment: .center)
+                            .frame(width: 60, height: 60, alignment: .center)
                     }
                     
                 }
                 Spacer()
             }
         }
+        .sheet(isPresented: $isPresented, content: {
+            MenuView(gameState: gameState, startGame: {
+                isPresented = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    gameState.startGame()
+                }
+            }, resetGame: {
+                print("reset menu")
+                gameState.resetGame()
+            })
+        })
     }
     
 }
