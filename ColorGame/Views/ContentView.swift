@@ -22,6 +22,21 @@ struct ContentView: View {
             .onTapGesture {
                 gameState.startGame()
             }
+            VStack(alignment: .leading) {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        gameState.pause()
+                    }) {
+                        Image(systemName: gameState.isPaused ? "play.fill" : "pause.fill")
+                            .foregroundColor(.black)
+                            .font(.title)
+                            .frame(width: 50, height: 50, alignment: .center)
+                    }
+                    
+                }
+                Spacer()
+            }
         }
     }
     
