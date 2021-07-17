@@ -21,9 +21,6 @@ struct ContentView: View {
             CircleTimerView(currentTime: gameState.currentTime, maxTime: gameState.maxTime,
                             score: gameState.score, scoreColor: gameState.scoreColor, currentColor: gameState.currentColor ?? Color.white
             )
-            .onTapGesture {
-                gameState.startGame()
-            }
             VStack(alignment: .leading) {
                 HStack {
                     Button(action: {

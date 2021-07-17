@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D94EEE9226A26C02004D1950 /* StrokeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EEE9126A26C02004D1950 /* StrokeTextView.swift */; };
+		D94EEE9426A278AA004D1950 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94EEE9326A278AA004D1950 /* MenuView.swift */; };
 		D967E5BF26A1AE240029C121 /* ColorGameApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E5BE26A1AE240029C121 /* ColorGameApp.swift */; };
 		D967E5C126A1AE240029C121 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D967E5C026A1AE240029C121 /* ContentView.swift */; };
 		D967E5C326A1AE260029C121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D967E5C226A1AE260029C121 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		D94EEE9126A26C02004D1950 /* StrokeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrokeTextView.swift; sourceTree = "<group>"; };
+		D94EEE9326A278AA004D1950 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		D967E5BB26A1AE240029C121 /* ColorGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D967E5BE26A1AE240029C121 /* ColorGameApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGameApp.swift; sourceTree = "<group>"; };
 		D967E5C026A1AE240029C121 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				D967E5CF26A1B2660029C121 /* ColoredPanelView.swift */,
 				D967E5D126A1B3200029C121 /* CircleTimerView.swift */,
 				D94EEE9126A26C02004D1950 /* StrokeTextView.swift */,
+				D94EEE9326A278AA004D1950 /* MenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D94EEE9426A278AA004D1950 /* MenuView.swift in Sources */,
 				D967E5D026A1B2660029C121 /* ColoredPanelView.swift in Sources */,
 				D94EEE9226A26C02004D1950 /* StrokeTextView.swift in Sources */,
 				D967E5C126A1AE240029C121 /* ContentView.swift in Sources */,
