@@ -16,7 +16,7 @@ class GameManager: ObservableObject {
     @Published var score: Int = 0
     @Published var scoreColor: Color = Color.black
     
-    private var isPaused: Bool = false
+    @Published var isPaused: Bool = false
     
     var possibleColors: [Color] = [
         Color.red,
@@ -41,26 +41,35 @@ class GameManager: ObservableObject {
     func startGame() {
         if self.timer != nil { return }
         print("Creating new timer")
-        self.currentColor = self.possibleColors.randomElement()
+        self.pickRandomColor()
+        self.startTimer()
+    }
+    
+    func pause() {
+        if (isPaused) {
+            self.startGame()
+            self.isPaused = false
+        } else {
+            self.isPaused = true
+            self.stopTimer()
+        }
+        
+    }
+    
+    func startTimer() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             self.currentTime += 1
             self.timeRemaining = self.maxTime - self.currentTime
         }
     }
     
-    func pause() {
-        if (isPaused) {
-            self.startGame()
-        } else {
-            self.timer?.invalidate()
-            self.timer = nil
-        }
-        
+    func stopTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
     }
     
     func resetGame() {
-        self.timer?.invalidate()
-        self.timer = nil
+        self.stopTimer()
         self.timeRemaining = 0
         self.currentTime = 0
     }
@@ -73,6 +82,7 @@ class GameManager: ObservableObject {
     
     
     func pickedColor(color: Color) {
+        if !self.isRunning { return }
         if color == currentColor {
             print("Correct color")
             self.scoreColor = Color.green
