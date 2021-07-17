@@ -15,7 +15,7 @@ class GameManager: ObservableObject {
     @Published var timeRemaining: Int = 0
     @Published var score: Int = 0
     @Published var scoreColor: Color = Color.black
-    
+    @Published var currentStreak: Int = 0
     @Published var isPaused: Bool = false
     
     var possibleColors: [Color] = [
@@ -88,11 +88,13 @@ class GameManager: ObservableObject {
             self.scoreColor = Color.green
             self.pickRandomColor()
             self.score += 1
+            self.currentStreak += 1
         } else {
             print("Wrong color")
             self.scoreColor = Color.red
             self.pickRandomColor()
             self.score -= 1
+            self.currentStreak = 0
         }
     }
 }
