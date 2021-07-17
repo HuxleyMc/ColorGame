@@ -16,7 +16,9 @@ class GameManager: ObservableObject {
     @Published var score: Int = 0
     @Published var scoreColor: Color = Color.black
     @Published var currentStreak: Int = 0
-    @Published var isPaused: Bool = false
+    @Published var isPaused: Bool = true
+    @Published var gameStarted: Bool = false
+    @Published var tilesClicked: Int = 0
     
     var possibleColors: [Color] = [
         Color.red,
@@ -39,15 +41,16 @@ class GameManager: ObservableObject {
     }
     
     func startGame() {
-        if self.timer != nil { return }
+        if gameStarted { return }
         print("Creating new timer")
         self.pickRandomColor()
         self.startTimer()
+        self.gameStarted = true
     }
     
     func pause() {
         if (isPaused) {
-            self.startGame()
+            self.resume()
             self.isPaused = false
         } else {
             self.isPaused = true
@@ -56,7 +59,17 @@ class GameManager: ObservableObject {
         
     }
     
+    func resume() {
+        if (isPaused) {
+            self.pickRandomColor()
+            self.startTimer()
+            self.isPaused = false
+        }
+    }
+    
     func startTimer() {
+        if self.timer != nil { return }
+        self.isPaused = false
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             self.currentTime += 1
             self.timeRemaining = self.maxTime - self.currentTime
@@ -69,9 +82,17 @@ class GameManager: ObservableObject {
     }
     
     func resetGame() {
+        print("Reset game")
+        self.gameStarted = false
         self.stopTimer()
         self.timeRemaining = 0
         self.currentTime = 0
+        self.currentColor = nil
+        self.currentStreak = 0
+        self.isPaused = true
+        self.scoreColor = .black
+        self.score = 0
+        self.tilesClicked = 0
     }
     
     func pickRandomColor() {
@@ -83,14 +104,13 @@ class GameManager: ObservableObject {
     
     func pickedColor(color: Color) {
         if !self.isRunning { return }
+        self.tilesClicked += 1
         if color == currentColor {
-            print("Correct color")
             self.scoreColor = Color.green
             self.pickRandomColor()
             self.score += 1
             self.currentStreak += 1
         } else {
-            print("Wrong color")
             self.scoreColor = Color.red
             self.pickRandomColor()
             self.score -= 1
