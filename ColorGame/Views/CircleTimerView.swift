@@ -36,10 +36,17 @@ struct CircleTimerView: View {
                 .frame(width: size, height: size)
                 .foregroundColor(.white)
             VStack {
-                Text("\(timeRemaining)")
-                Image(systemName: "hourglass")
-                StrokeTextView(text: "\(score)", width: 0.5, color: Color.black)
-                    .foregroundColor(scoreColor)
+                HStack(spacing: 0.1) {
+                    Text("\(timeRemaining)")
+                    Text("s")
+                        .font(.caption)
+                }
+                HStack(spacing: 0.1) {
+                    StrokeTextView(text: "\(score)", width: 0.5, color: Color.black)
+                        .foregroundColor(scoreColor)
+                    Image(systemName: scoreColor == Color.red ? "arrow.down" : "arrow.up")
+                        .font(.caption)
+                }
             }
             .font(.title)
             .foregroundColor(.black)
