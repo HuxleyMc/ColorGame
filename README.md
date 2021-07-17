@@ -5,6 +5,14 @@
   </a>
 </p>
 
-<img src="https://raw.githubusercontent.com/HuxleyMc/ColorGame/main/Menu.png" height="400px">
-<img src="https://raw.githubusercontent.com/HuxleyMc/ColorGame/main/Game.png" height="400px">
-<img src="https://raw.githubusercontent.com/HuxleyMc/ColorGame/main/Score.png" height="400px">
+
+
+
+
+<table>
+<tr>
+<td><img src="https://raw.githubusercontent.com/HuxleyMc/ColorGame/main/Menu.png" width="200px"></td>
+<td><img src="https://raw.githubusercontent.com/HuxleyMc/ColorGame/main/Game.png" width="200px"></td>
+<td><img src="https://raw.githubusercontent.com/HuxleyMc/ColorGame/main/Score.png" width="200px"></td>
+</tr> 
+</table>
