@@ -52,9 +52,9 @@ class GameManager: ObservableObject {
     
     func pause() {
         if isPaused {
-            self.pickRandomColor()
             self.startTimer()
             self.isPaused = false
+            if self.timeRemaining != 0 {self.pickRandomColor()}
         } else {
             self.stopTimer()
             self.isPaused = true
