@@ -47,32 +47,28 @@ class GameManager: ObservableObject {
         self.pickRandomColor()
         self.startTimer()
         self.gameStarted = true
+        self.isPaused = false
     }
     
     func pause() {
-        if (isPaused) {
-            self.resume()
-            self.isPaused = false
-        } else {
-            self.isPaused = true
-            self.stopTimer()
-        }
-        
-    }
-    
-    func resume() {
-        if (isPaused) {
+        if isPaused {
             self.pickRandomColor()
             self.startTimer()
             self.isPaused = false
+        } else {
+            self.stopTimer()
+            self.isPaused = true
         }
     }
+    
     
     func startTimer() {
         if self.timer != nil { return }
         self.isPaused = false
+        self.gameStarted = true
         self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             if self.timeRemaining == 0 {
+                print("times up")
                 self.stopTimer()
                 self.currentColor = nil
                 self.isPaused = true
@@ -92,7 +88,7 @@ class GameManager: ObservableObject {
         print("Reset game")
         self.gameStarted = false
         self.stopTimer()
-        self.timeRemaining = 0
+        self.timeRemaining = self.maxTime
         self.currentTime = 0
         self.currentColor = nil
         self.currentStreak = 0
